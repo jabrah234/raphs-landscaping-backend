@@ -9,13 +9,14 @@ dotenv.config();
 const app = express();
 const PORT = process.env.PORT || 3000;
 
+// Allow CORS requests from the Netlify frontend
 app.use(cors({ origin: 'https://raphs-landscaping.netlify.app' }));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.use(express.static(path.join(__dirname, '../frontend')));
 
-// Add a test route to confirm the server is running
+// Test route to confirm the server is running
 app.get('/test', (req, res) => {
   res.status(200).json({ message: 'Server is running' });
 });
